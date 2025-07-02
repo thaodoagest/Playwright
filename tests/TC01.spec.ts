@@ -17,11 +17,8 @@ test("TC01 - User can buy items", async ({page}) => {
     await CommonActions.checkPageTitle(page, variables.myaccHeader);
 
     await homePage.selectDepartment("Electronic Components & Supplies");
-    //await CommonActions.checkPageTitle(page, variables.electronicComponentsHeader);
-    //await CommonActions.switchView(page, 'grid', homePage);
-    //await CommonActions.checkGridDisplay(page, homePage.locators.grid);
-
-    await CommonActions.switchView(page, 'list', homePage);
+    
+    await homePage.switchView(page, 'list', homePage);
     //await CommonActions.checkListDisplay(page, homePage.locators.list);
     
     await CommonActions.clickRandomItems(page, homePage.locators.addtoCart);

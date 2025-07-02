@@ -59,6 +59,23 @@ export class HomePage {
         
     }
 
+    async switchView (page: Page, viewType: 'grid' | 'list', homePage: any) {
+        if (viewType === 'grid') {
+            await page.waitForLoadState('networkidle');
+            await expect(homePage.locators.switchGrid).toBeVisible({ timeout: 10000 }); // Ensure switchGrid is visible before clicking
+            await homePage.locators.switchGrid.click();
+            await expect(homePage.locators.grid).toBeVisible({ timeout: 10000 }); // Wait for grid view
+        } else if (viewType === 'list') {
+            await page.waitForLoadState('networkidle');
+            await expect(homePage.locators.switchList).toBeVisible({ timeout: 15000 }); // Ensure switchList is visible before clicking
+            await homePage.locators.switchList.hover();
+            await homePage.locators.switchList.click();
+            await expect(homePage.locators.list).toBeVisible({ timeout: 10000 }); // Wait for list view
+        } else {
+            throw new Error('Invalid view type specified. Use "grid" or "list".');
+        }
+    }
+
     
 
 }
