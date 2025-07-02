@@ -65,4 +65,22 @@ export class CartPage {
 
     }
 
+    async checkorderNumber(){
+        const orderNumber = await this.page.locator('.order-number').textContent();
+        if (orderNumber) {
+            console.log(`Order Number: ${orderNumber}`);
+        } else {
+            console.log("Order number not found.");
+        }
+
+
+
+    }
+
+    async  checkOrderDetail (
+
+    ){
+        
+    }
+
 }
