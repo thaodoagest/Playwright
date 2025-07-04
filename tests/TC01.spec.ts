@@ -14,7 +14,6 @@ test("TC01 - User can buy items", async ({page}) => {
     const cartPage = new CartPage(page);
     
     await page.goto(CONFIG.BASE_URL);
-    //await CommonActions.checkPageTitle(page, variables.loginPageTitle);
     await loginPage.logIn(page, CONFIG.CREDENTIALS.USERNAME, CONFIG.CREDENTIALS.PASSWORD);
     await CommonActions.checkPageTitle(page, variables.myaccHeader);
 
