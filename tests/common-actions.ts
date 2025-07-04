@@ -1,4 +1,7 @@
 import {test, expect, Page, Locator} from '@playwright/test';
+//import products from 'data/product.json';
+import * as fs from 'fs';
+
 
 export class CommonActions {
 
@@ -31,6 +34,17 @@ export class CommonActions {
         } else {
             console.log("No items available to add to cart.");
         }
+    }
+
+   static async getRandomProduct(nameDepartment: string, filePath: string): Promise<any> {
+        
+        const importdata = await import(`../${filePath}`) // Adjust the path as necessary;
+        const r = fs.readFileSync(filePath, 'utf-8');
+        const jsonData = JSON.parse(r);
+        const items = jsonData[nameDepartment];
+        const randomIndex = Math.floor(Math.random() * items.length);
+        //return items[randomIndex];
+        return jsonData[nameDepartment][randomIndex].name; // Return the name of the random product
     }
     
 }

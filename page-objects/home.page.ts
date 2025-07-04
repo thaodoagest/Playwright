@@ -31,26 +31,13 @@ export class HomePage {
     }
 
     async selectDepartment(departmentName: string) {
-        await this.locators.allDepartmentsLink.click();
+        await this.page.waitForLoadState('networkidle'); // Ensure the page is fully loaded
+        await expect(this.locators.allDepartmentsLink).toBeVisible({ timeout: 10000 }); // Ensure the allDepartmentsLink is visible
         await this.locators.allDepartmentsLink.hover();
-        const box = await this.locators.allDepartmentsLink
-                                        .boundingBox();
-        if (box) {
-            await this.page.mouse.move(box.x + box.width / 2, box.y + box.height / 2 + 50);
-        } else {
-            throw new Error('Bounding box for allDepartmentsLink not found.');
-        }
+        await this.locators.allDepartmentsLink.hover();
         const department = this.page.getByRole('link', { name: new RegExp(departmentName, 'i') }).first();
-        // Wait up to 10s for the element to appear, but don't throw if not found
-        const exists = await department.isVisible({ timeout: 10000 }).catch(() => false);
-
-        if (exists) {
-            await department.click();
-        } else {
-            // Handle the case when the department link does not exist
-            await this.locators.allDepartmentsLink.click();
-            await department.click();
-        }
+        await expect(department).toBeVisible({ timeout: 10000 }); // Ensure the department link is visible
+        await department.click();
     }
 
     async gotoCart() {
@@ -74,6 +61,14 @@ export class HomePage {
         } else {
             throw new Error('Invalid view type specified. Use "grid" or "list".');
         }
+    }
+
+    async addtoCart(page: Page, itemName: string) {
+        const item = this.page.getByRole('link', { name: new RegExp(itemName, 'i') }).first();
+        await expect(item).toBeVisible({ timeout: 10000 });
+        await item.getByText('Add to cart').first().click();
+        //await expect(this.locators.addtoCart).toBeVisible({ timeout: 10000 });
+        //await this.locators.addtoCart.click();
     }
 
     

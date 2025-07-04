@@ -1,0 +1,40 @@
+{ "ElectronicsComponentsAndSupplies": 
+  [{
+    "type": "Printers",
+    "name": "Canon i-SENSYS LBP6030W with Wi-Fi",
+    "price": 290.00
+  },
+  {
+    "type": "Printers",
+    "name": "DJI Mavic Pro Camera Drone",
+    "price": 0.25
+  }
+  ],
+
+  "CarElectronics": 
+  [{
+    "id": 1,
+    "name": "Car Stereo System",
+    "description": "High-quality car stereo with Bluetooth",
+    "price": 149.99,
+    "inStock": true,
+    "categories": ["Car", "Electronics"]
+  },
+  {
+    "id": 2,
+    "name": "Dash Cam",
+    "description": "1080p HD dash cam with night vision",
+    "price": 79.99,
+    "inStock": true,
+    "categories": ["Car", "Accessories"]
+  },
+  {
+    "id": 3,
+    "name": "GPS Navigation System",
+    "description": "Portable GPS with lifetime maps",
+    "price": 129.99,
+    "inStock": false,
+    "categories": ["Car", "Navigation"]
+  }]
+
+}
